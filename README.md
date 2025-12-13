@@ -1,4 +1,9 @@
-# Lambda HTML to PDF Setup
+# Lambda HTML to PDF
+
+This Lambda function renders HTML into a PDF using Puppeteer, with support for advanced metadata, viewer preferences, and security encryption (password protection and permissions).
+
+
+## Lambda Function Setup
 
 1. Install AWS CLI and run `aws configure` to setup access to AWS with your credentials
 2. Create an IAM Role to access the S3 bucket from the Lambda function by running `./create-role.sh`. Be sure to document the ARN of the new role output by the script.
@@ -10,11 +15,9 @@
 
 -----
 
-# Lambda HTML to PDF API
+## API Gateway
 
-This Lambda function renders HTML into a PDF using Puppeteer, with support for advanced metadata, viewer preferences, and security encryption (password protection and permissions).
-
-## Endpoint Overview
+### Endpoint Overview
 
 * **Method:** `POST`
 * **Content-Type:** `application/json`
@@ -22,7 +25,7 @@ This Lambda function renders HTML into a PDF using Puppeteer, with support for a
 
 -----
 
-## JSON Payload Structure
+### JSON Payload Structure
 
 The input payload is a JSON object with the following top-level fields:
 
@@ -36,7 +39,7 @@ The input payload is a JSON object with the following top-level fields:
 
 -----
 
-## 1\. Puppeteer Options (`puppeteer`)
+### 1\. Puppeteer Options (`puppeteer`)
 
 Controls how the browser renders the PDF.
 
@@ -66,7 +69,7 @@ Controls how the browser renders the PDF.
 
 -----
 
-## 2\. Metadata Options (`pdfLib.metadata`)
+### 2\. Metadata Options (`pdfLib.metadata`)
 
 Sets standard PDF properties visible in document properties.
 
@@ -96,7 +99,7 @@ Sets standard PDF properties visible in document properties.
 
 -----
 
-## 3\. Viewer Preferences (`pdfLib.viewerPreferences`)
+### 3\. Viewer Preferences (`pdfLib.viewerPreferences`)
 
 Controls how the PDF opens in the user's viewer (e.g., Adobe Acrobat).
 
@@ -120,7 +123,7 @@ Controls how the PDF opens in the user's viewer (e.g., Adobe Acrobat).
 
 -----
 
-## 4\. Encryption & Permissions (`pdfLib.encryption`)
+### 4\. Encryption & Permissions (`pdfLib.encryption`)
 
 Secures the PDF with 128-bit RC4 encryption.
 
@@ -145,7 +148,7 @@ Secures the PDF with 128-bit RC4 encryption.
 | `ownerPassword` | `string` | `""` | Password required to **change permissions**. |
 | `permissions` | `object` | *Allowed* | See table below. |
 
-### Permission Flags
+#### Permission Flags
 
 | Flag | Type | Values | Description |
 | :--- | :--- | :--- | :--- |
@@ -159,7 +162,7 @@ Secures the PDF with 128-bit RC4 encryption.
 
 -----
 
-## Example Payload (Full Feature)
+### Example Payload (Full Feature)
 
 ```json
 {
