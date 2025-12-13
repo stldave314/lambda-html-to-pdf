@@ -6,7 +6,7 @@
 4. Deploy the package to AWS Lambda by running `./deploy.sh`
 5. Test the AWS Lambda function by running `./test-lambda.sh`
 6. Create an AWS API Gateway Endpoint by running `./setup-api.sh`
-7. Manage the AWS API Gateway API Keys by running `manage-keys.sh`
+7. Manage the AWS API Gateway API Keys by running `./manage-keys.sh`
 
 -----
 
