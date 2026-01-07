@@ -36,9 +36,9 @@ aws s3 cp chromium-layer.zip "s3://$BUCKET_NAME/chromium-layer.zip"
 echo "Publishing Layer..."
 LAYER_VERSION_ARN=$(aws lambda publish-layer-version \
     --layer-name "chromium-layer" \
-    --description "Chromium for Node 20" \
+    --description "Chromium for Node 24" \
     --content S3Bucket="$BUCKET_NAME",S3Key="chromium-layer.zip" \
-    --compatible-runtimes nodejs20.x \
+    --compatible-runtimes nodejs24.x \
     --region "$REGION" \
     --query 'LayerVersionArn' \
     --output text)

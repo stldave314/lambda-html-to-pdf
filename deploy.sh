@@ -18,7 +18,7 @@ REGION=$(get_input "AWS Region" "$3")
 ROLE_ARN=$(get_input "IAM Role ARN" "$4")
 LAYER_ARN=$(get_input "Layer ARN" "$5")
 
-echo "Starting Clean Build for Node 20..."
+echo "Starting Clean Build for Node 24..."
 
 # Clean build
 rm -rf dist function.zip
@@ -51,14 +51,14 @@ if aws lambda get-function --function-name "$FUNCTION_NAME" --region "$REGION" >
     
     aws lambda update-function-configuration \
         --function-name "$FUNCTION_NAME" \
-        --runtime nodejs20.x \
+        --runtime nodejs24.x \
         --layers "$LAYER_ARN" \
         --region "$REGION"
 else
     echo "Creating Function..."
     aws lambda create-function \
         --function-name "$FUNCTION_NAME" \
-        --runtime nodejs20.x \
+        --runtime nodejs24.x \
         --role "$ROLE_ARN" \
         --handler index.handler \
         --code S3Bucket="$BUCKET_NAME",S3Key="function.zip" \
